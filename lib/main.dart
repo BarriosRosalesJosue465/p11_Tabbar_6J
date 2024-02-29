@@ -1,41 +1,76 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(AppTabBar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class AppTabBar extends StatelessWidget {
+  const AppTabBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: "Ejemplpo TabBar",
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MiPaguinaInicial(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class MiPaguinaInicial extends StatefulWidget {
+  const MiPaguinaInicial({Key? key}) : super(key: key);
 
   @override
+  State<MiPaguinaInicial> createState() => _MiPaguinaInicialState();
+}
+
+class _MiPaguinaInicialState extends State<MiPaguinaInicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("TabBar josue barrios"),
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: "Flights",
+                icon: Icon(Icons.percent),
+              ), //texto icono
+              Tab(text: "credito", icon: Icon(Icons.wallet)),
+              Tab(text: "bloqueo", icon: Icon(Icons.dangerous_outlined)),
+              Tab(text: "tienda", icon: Icon(Icons.wallet_giftcard)),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: const <Widget>[
+            Center(
+              child: Text(
+                "descuento",
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 80),
+              ),
+            ),
+            Center(
+              child: Text(
+                "credito",
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 80),
+              ),
+            ),
+            Center(
+              child: Text(
+                "bloqueo",
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 80),
+              ),
+            ),
+            Center(
+              child: Text(
+                "tienda",
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 80),
+              ),
+            )
+          ],
         ),
       ),
     );
